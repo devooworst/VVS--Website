@@ -33,7 +33,7 @@
                 <li><a href="#" onclick="showSection('vss')">What is VSS?</a></li>
                 <li><a href="#" onclick="showSection('impact')">Examples of Impact</a></li>
                 <li><a href="#" onclick="showSection('help')">Help</a></li>
-                <li><a href="#" onclick="showSection('security')">Security</a></li> <!-- Link to Security Section -->
+                <li><a href="#" onclick="showSection('security')">Security</a></li>
             </ul>
         </nav>
     </header>
@@ -46,65 +46,27 @@
             </div>
         </section>
 
-        <section id="vss" class="section">
-            <h1>What is VSS?</h1>
-            <p>VSS (Value-Driven Strategic Solutions) is an innovative approach to solving complex challenges.</p>
-            <div class="image-section">
-                <img src="https://drive.google.com/uc?id=1TT78XHAY6pMupmkWUTV3D4WoVK7s31K9" alt="VSS Concept">
-            </div>
-        </section>
-
-        <section id="impact" class="section">
-            <h1>Examples of Impact</h1>
-            <p>Here are some ways VSS has changed organizations:</p>
-            <div class="audio-controls">
-                <button onclick="toggleAudio()">▶️ Play / ⏸️ Pause Narration</button>
-                <audio id="impactAudio">
-                    <source src="https://drive.google.com/uc?id=1f4l_zgqQGc2-q1ZoHZX4tLnPsg1VpWO0" type="audio/m4a">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-        </section>
-
-        <section id="help" class="section">
-            <h1>Help & Contact</h1>
-            <p>Contact us at: <strong>support@pgcc.com</strong></p>
-        </section>
-
-        <!-- New Security Section -->
         <section id="security" class="section">
             <h1>Security Measures</h1>
             <div class="security-section">
                 <h2>Data Protection and Security</h2>
-                <p>We are committed to ensuring the security and privacy of all users. The platform is designed to use the latest encryption standards for secure data transmission and complies with the Americans with Disabilities Act (ADA) for accessibility.</p>
-                <p>We utilize multi-factor authentication (MFA) for system access and adhere to best practices in securing sensitive information.</p>
-                <h2>Access Control</h2>
-                <p>Only authorized personnel are granted access to specific sections of this platform. Unauthorized access attempts are logged and monitored for security purposes.</p>
+                <p>We are committed to ensuring the security and privacy of all users.</p>
             </div>
         </section>
     </div>
 
     <script>
+        function setSecureCookie(name, value) {
+            document.cookie = `${name}=${value}; Secure; HttpOnly; SameSite=Strict; Path=/;`;
+        }
+
+        setSecureCookie('userSession', 'fakeSecureToken12345');
+        setSecureCookie('preferences', 'darkMode=true');
+
         function showSection(sectionId) {
             var sections = document.querySelectorAll('.section');
             sections.forEach(section => section.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
-
-            // Play narration when "Examples of Impact" is opened
-            if (sectionId === 'impact') {
-                document.getElementById("impactAudio").play();
-            } else {
-                document.getElementById("impactAudio").pause();
-            }
-        }
-
-        function toggleAudio() {
-            var audio = document.getElementById("impactAudio");
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
         }
     </script>
 </body>
