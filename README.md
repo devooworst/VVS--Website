@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PGCC Website</title>
-    <link rel="icon" type="image/png" href="pgcc_favicon.png"> 
+    <link rel="icon" type="image/png" href="pgcc_favicon.png">
     <style>
         body { font-family: 'Arial', sans-serif; background-color: white; color: #003366; text-align: center; margin: 0; }
         header { background-color: #003366; color: white; padding: 10px; position: fixed; width: 100%; top: 0; left: 0; display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
@@ -21,6 +21,10 @@
         .audio-controls { margin-top: 20px; }
         .audio-controls input { width: 100px; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .login-form { position: fixed; bottom: 10px; right: 10px; background-color: #003366; color: white; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0,0,0,0.2); }
+        .login-form input { margin: 5px 0; padding: 10px; width: 200px; }
+        .login-form button { padding: 10px 15px; background-color: #0066cc; border: none; color: white; cursor: pointer; }
+        .login-form button:hover { background-color: #0055b3; }
     </style>
 </head>
 <body>
@@ -43,6 +47,7 @@
                 <img src="https://drive.google.com/uc?id=1wh0pjG8jK5_7ZwXM6rH0_q6yqXIQ1XFS" alt="Welcome Image" loading="lazy">
             </div>
         </section>
+
         <section id="vss" class="section">
             <h1>What is VSS?</h1>
             <p>VSS (Value-Driven Strategic Solutions) is an innovative approach to solving complex challenges.</p>
@@ -50,6 +55,7 @@
                 <img src="https://drive.google.com/uc?id=1TT78XHAY6pMupmkWUTV3D4WoVK7s31K9" alt="VSS Concept" loading="lazy">
             </div>
         </section>
+
         <section id="impact" class="section">
             <h1>Examples of Impact</h1>
             <p>Here are some ways VSS has changed organizations:</p>
@@ -62,35 +68,28 @@
                 </audio>
             </div>
         </section>
+
         <section id="help" class="section">
             <h1>Help & Contact</h1>
             <p>Contact us at: <strong>support@pgcc.com</strong></p>
         </section>
     </div>
+
+    <!-- Login Form -->
+    <div class="login-form">
+        <h2>Login</h2>
+        <form onsubmit="setSecureCookie(event)">
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
     <script>
         document.cookie = "userPreferences=darkMode; Secure; HttpOnly; SameSite=Strict";
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-        }
-        function toggleAudio() {
-            var audio = document.getElementById("impactAudio");
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-        function updateProgress() {
-            var audio = document.getElementById("impactAudio");
-            var progress = document.getElementById("audioProgress");
-            progress.max = audio.duration;
-            progress.value = audio.currentTime;
-        }
-        document.getElementById("audioProgress").addEventListener("input", function() {
-            var audio = document.getElementById("impactAudio");
-            audio.currentTime = this.value;
-        });
-    </script>
-</body>
-</html>
+        
+        function setSecureCookie(event) {
+            event.preventDefault();
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            
