@@ -76,9 +76,36 @@
             <h1>Security Measures</h1>
             <div class="security-section">
                 <h2>Data Protection and Security</h2>
-                <p>We are committed to ensuring the security and privacy of all users...</p>
+                <p>We are committed to ensuring the security and privacy of all users. The platform is designed to use the latest encryption standards for secure data transmission and complies with the Americans with Disabilities Act (ADA) for accessibility.</p>
+                <p>We utilize multi-factor authentication (MFA) for system access and adhere to best practices in securing sensitive information.</p>
+                <h2>Access Control</h2>
+                <p>Only authorized personnel are granted access to specific sections of this platform. Unauthorized access attempts are logged and monitored for security purposes.</p>
             </div>
         </section>
     </div>
+
+    <script>
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+
+            // Play narration when "Examples of Impact" is opened
+            if (sectionId === 'impact') {
+                document.getElementById("impactAudio").play();
+            } else {
+                document.getElementById("impactAudio").pause();
+            }
+        }
+
+        function toggleAudio() {
+            var audio = document.getElementById("impactAudio");
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
 </body>
 </html>
